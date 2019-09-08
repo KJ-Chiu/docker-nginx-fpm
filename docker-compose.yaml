@@ -1,0 +1,17 @@
+nginx:
+    image: blog.dotslash.tw-nginx
+    container_name: nginx
+    ports:
+        - "8080:80"
+        - "443:443"
+    links:
+        - php
+    volumes:
+        - ./index-nginx.php:/usr/share/nginx/html/index.php
+
+php:
+    image: blog.dotslash.tw-fpm
+    container_name: php_fpm_server
+    volumes:
+        - ./info.php:/info.php
+        - ./index-fpm.php:/index.php
